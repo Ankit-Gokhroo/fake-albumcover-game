@@ -1,0 +1,44 @@
+import requests
+wikipedia_link='https://en.wikipedia.org/wiki/Special:Random'
+raw_random_wikipedia_page=requests.get(wikipedia_link)  
+
+page=raw_random_wikipedia_page .text
+print(page)
+
+raw_random_wikipedia_page1 = requests.get(wikipedia_link)
+page=raw_random_wikipedia_page1.content
+
+result = page.find(b'<title>')
+result1 = page.find(b'</title>')
+print(result)
+s1 = ""
+#print(chr(page[result+1]))
+print(result1)
+for i in range(result, result1):
+    print(chr(page[i]), end = " ")
+    s1 = s1 + chr(page[i])
+print()
+
+    
+##### To extract the name 
+#print(s1)
+s2 = s1.strip(' - Wikipedia')
+s3 = s2.strip('<title>')
+#print(s2)
+print(s3)
+
+album_title = s3
+
+print("Your band: ", band_title)
+print("Your album: ", album_title)
+
+img=display_cover(top=album_title,bottom=band_title)
+
+img.save('sample-out.png')
+
+
+print("Your band: ", band_title)
+print("Your album: ", album_title)
+
+
+IPythonImage(filename='sample-out.png')
